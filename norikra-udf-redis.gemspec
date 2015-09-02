@@ -10,14 +10,15 @@ Gem::Specification.new do |spec|
   spec.email         = ["ogibayashi@gmail.com.com"]
 
   spec.summary       = %q{Norikra UDF to execute operations on Redis. }
-  spec.description   = %q{Norikra UDF to execute operations on Redis.}
+  spec.description   = %q{Norikra UDF to execute operations on Redis, like incr, incrby, set, get etc.}
   spec.homepage      = "https://github.com/ogibayashi/norikra-udf-redis"
+  spec.license       = "GPLv2"
   spec.platform      = "java"
   
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata['allowed_push_host'] = "https://rubygems.org"
   else
     raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
   end
@@ -28,10 +29,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib","jar"]
 
   spec.add_development_dependency "bundler", "~> 1.7"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rake"
   spec.add_development_dependency "minitest"
-  spec.add_runtime_dependency "norikra"
-  spec.add_runtime_dependency "bundler"
-  spec.add_runtime_dependency "rake"
-  spec.add_runtime_dependency "rspec"
+  spec.add_development_dependency "rspec"
+  spec.add_runtime_dependency "norikra", "~>1.0"
 end
