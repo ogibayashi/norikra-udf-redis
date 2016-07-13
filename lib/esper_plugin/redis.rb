@@ -5,10 +5,20 @@ require 'commons-pool2-2.4.2.jar'
 java_package 'jp.gr.java_conf.ogibayashi.norikra.udf'
 
 class Redis  # FQDN: org.example.yourcompany.norikra.udf.MyUDF1
+
+  ini_path = "/tmp/redis-server.ini"
+  if File.exists?(ini_path)
+    ini = IniFile.load(ini_path)
+    @@hostname = ini['redis-server']['hostname']
+  end
+
+  if @@hostname.nil?
+    @@hostname = "localhost"
+  end
   
   def self.connect
     begin
-      Java::redis.clients.jedis.JedisPool.new(Java::redis.clients.jedis.JedisPoolConfig.new, "localhost")
+      Java::redis.clients.jedis.JedisPool.new(Java::redis.clients.jedis.JedisPoolConfig.new, @@hostname)
     rescue
       warn $! if @logger
     end
